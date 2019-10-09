@@ -1,13 +1,15 @@
 import React,{Component} from 'react';
+import {store} from '../redux/store/store'
 
 class Post extends Component {
-
-        state = {
+constructor(props){
+  super(props);
+        this.state = {
             title: '',
             body: ''
           };
-    
-  
+          // this.handleSubmit = this.handleSubmit.bind(this)   
+        }
 
   handleInputChange = e => {
     this.setState({
@@ -15,13 +17,15 @@ class Post extends Component {
     });
   };
 
-  handleSubmit = e => {
+handleSubmit=(e)=>{
     e.preventDefault();
-    if (this.state.title.trim() && this.state.body.trim()) {
+    // if (this.state.title.trim() && this.state.body.trim()) {
       console.log(this.state)
-      this.props.AddPost(this.state);
+      this.props.onAddPost(this.state);
       this.handleReset();
-    }
+
+      console.log(store.getState())
+    // }
   };
 
   handleReset = () => {
@@ -35,7 +39,7 @@ class Post extends Component {
     return (
       <div><center>
           <br></br>
-          <form onSubmit={ this.handleSubmit }>
+          <form onSubmit={ this.handleSubmit.bind(this) }>
           <div className="form-group">
               <input
               type="text"
