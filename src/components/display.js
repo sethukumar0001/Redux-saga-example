@@ -1,27 +1,38 @@
 import React from 'react';
-export default class Display extends React.Component{
-	constructor(props) {
-		super(props);
+import {connect} from 'react-redux';
+import {getPost} from '../redux/actions/actionCreators';
 
-		this.state = {
-			data:[]
-		};
-    };
-  componentDidMount() {
-    // fetch('http://localhost:4000/backend/userlist')
-    //   .then(res => res.json())
-    //   .then(members => this.setState({ data: members.data }));
+
+class Display extends React.Component{
+  componentDidMount(){
+    // this.props.getPost();
   }
 
+  person = (x, i) =>
+  <div>
+    <h1>
+      {x.name.name}
+    </h1>
+  </div>;
   render(){
-      console.log(this.state.data);
-    return (
-        <div >
-       
-          {this.state.data.map(member =>
-            <div key={member.id}>{member.name} {member.age}</div>
-          )}
-        </div>
-    );
+    // const {data =[]}= this.props.data
+    // return data.length?<h1>{data.map(this.person)}</h1>:<h1>Loading....</h1>
+    return(
+      <div>Hello...</div>
+    )
   }
 }
+ const mapStateToProps = (state) => {
+  return {
+    data: state.data
+  }
+}
+const mapDispatchToProps = (dispatch) => {
+  return {
+    dispatch1: () => {
+      dispatch({getPost})
+    }
+  }
+}
+
+export default connect(mapStateToProps,mapDispatchToProps)(Display);

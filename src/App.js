@@ -14,6 +14,7 @@ class App extends Component {
     <BrowserRouter>
       <div className="container">
           <Posts />
+          <Display />
       </div>
       </BrowserRouter>
       </Provider> 

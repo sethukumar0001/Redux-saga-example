@@ -3,8 +3,9 @@ import { sendPost } from '../redux/actions/actionCreators';
 import Posts from '../components/post';
 
 const mapDispatchToProps = dispatch => {
+  console.log("hiii")
   return {
-    onAddPost: post => {
+    AddPost: post => {
       dispatch(sendPost(post));
     }
   };
